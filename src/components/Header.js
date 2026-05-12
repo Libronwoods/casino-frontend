@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Header() {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Header() {
 					<li>Войти</li>
 					<li className="login">
 						<button className="register-btn" onClick={handleOpenModal}>Регистрация</button>
-						<div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
+						{modalOpen ? <div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
 							<div className="popup__content">
 								<button
 									type="button"
@@ -38,7 +38,7 @@ export default function Header() {
 									Закрыть модальное окно по клику на крестик
 								</p>
 							</div>
-						</div>
+						</div> : null }
 					</li>
 				</ul>
 			</div>

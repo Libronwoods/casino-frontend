@@ -41,10 +41,6 @@ ul.nav li {
 	transition: opacity 500ms ease;
 }
 
-ul.nav li :hover {
-	opacity: 0.5;
-}
-
 .register-btn {
 	background-color: #fc0000;
 	color: #fdfdfd;
@@ -65,18 +61,8 @@ ul.nav li :hover {
 }
 
 .popup {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-items: center;
 	opacity: 0;
-	visibility: hidden;
-	transition: all 300ms linear 300ms;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 .popup.open {
@@ -85,6 +71,7 @@ ul.nav li :hover {
 }
 
 .popup__content {
+	z-index: 6;
 	background: #e9e9e5;
 	padding: 70px 100px;
 	width: 500px;
