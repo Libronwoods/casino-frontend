@@ -1,16 +1,7 @@
-import { useState } from 'react';
+import PortalExample from "./ModalPortal"
+
 
 export default function Header() {
-	const [modalOpen, setModalOpen] = useState(false);
-
-	const handleOpenModal = () => {
-		setModalOpen(true);
-	};
-
-	const handleCloseModal = () => {
-		setModalOpen(false);
-	};
-
 	return (
 		<header>
 			<div>
@@ -20,25 +11,13 @@ export default function Header() {
 					<li>Лайф</li>
 					<li>Казино</li>
 					<li>Live-казино</li>
-					<li>Язык</li>
+					<select className="language-select">
+						<option value="RU">RU</option>
+						<option value="EN">EN</option>
+					</select>
 					<li>Войти</li>
 					<li className="login">
-						<button className="register-btn" onClick={handleOpenModal}>Регистрация</button>
-						{modalOpen ? <div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
-							<div className="popup__content">
-								<button
-									type="button"
-									className="popup__close"
-									onClick={handleCloseModal}
-								>
-									<span></span>
-								</button>
-								<h2 className="popup__title">Simple Modal</h2>
-								<p className="popup__text">
-									Закрыть модальное окно по клику на крестик
-								</p>
-							</div>
-						</div> : null }
+						<PortalExample />
 					</li>
 				</ul>
 			</div>
@@ -46,3 +25,30 @@ export default function Header() {
 		</header>
 	);
 }
+
+
+
+// const Portal = (props) => {
+// 	const node = document.createElement('div');
+// 	document.body.appendChild(node)
+
+// 	return ReactDOM.createPortal(props.children, node);
+// }
+// const Main = () => {
+
+// 	return (
+// 		<div className="popup__content">
+// 			<button
+// 				type="button"
+// 				className="popup__close"
+// 				onClick={handleCloseModal}
+// 			>
+// 				<span></span>
+// 			</button>
+// 			<h2 className="popup__title">Simple Modal</h2>
+// 			<p className="popup__text">
+// 				Закрыть модальное окно по клику на крестик
+// 			</p>
+// 		</div>
+// 	)
+// }
