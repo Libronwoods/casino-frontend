@@ -26,7 +26,6 @@ export default function Header() {
 					</li>
 				</ul>
 				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-					<p>Какой-то текст </p>
 				</ModalPortal>
 			</div>
 			<div className="presentation"></div>
