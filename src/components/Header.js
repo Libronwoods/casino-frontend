@@ -1,4 +1,10 @@
+
+import { useState } from 'react';
+import ModalPortal from './ModalPortal';
 export default function Header() {
+
+	const [isOpen, setIsOpen] = useState(false);
+
 	return (
 		<header>
 			<div>
@@ -14,11 +20,14 @@ export default function Header() {
 					</select>
 					<li className="login">Войти</li>
 					<li className="login">
-						<button className="register-btn">
+						<button className="register-btn" onClick={() => setIsOpen(true)}>
 							Регистрация
 						</button>
 					</li>
 				</ul>
+				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+					<p>Какой-то текст </p>
+				</ModalPortal>
 			</div>
 			<div className="presentation"></div>
 		</header>
