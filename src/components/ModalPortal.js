@@ -8,6 +8,7 @@ export default function ModalPortal({ isOpen, mode, onClose }) {
 		const onKey = (e) => {
 			if (e.key === 'Escape') onClose();
 		};
+
 		document.addEventListener('keydown', onKey);
 		const prevOverflow = document.body.style.overflow;
 		document.body.style.overflow = 'hidden';

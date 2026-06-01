@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
 import ModalPortal from './ModalPortal';
+
+
 export default function Header() {
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +27,7 @@ export default function Header() {
 						</button>
 					</li>
 				</ul>
-				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-				</ModalPortal>
+				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 			</div>
 			<div className="presentation"></div>
 		</header>
