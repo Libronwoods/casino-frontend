@@ -42,7 +42,6 @@ export default function Header() {
 					</li>
 				</ul>
 			</div>
-			<div className='presentation'></div>
 		</header>
 	);
 }
