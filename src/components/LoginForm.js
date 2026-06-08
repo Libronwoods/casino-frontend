@@ -1,5 +1,6 @@
 
-function LoginForm() {
+
+function LoginForm({ handleChangeToLogin }) {
 	return (
 
 		<form className="modal-form">
@@ -30,6 +31,14 @@ function LoginForm() {
 			<button type="submit" className="modal-submit">
 				Войти
 			</button>
+
+			<label className="modal-agree">
+
+				<span onClick={() => handleChangeToLogin()}>
+
+					Нет аккаунта? Регистрация
+				</span>
+			</label>
 		</form>
 	)
 }

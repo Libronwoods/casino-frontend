@@ -2,7 +2,7 @@ import { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 
-export default function ModalContent({ isOpen, onClose }) {
+export default function ModalContent({ onClose }) {
 
 	const [activeTab, setActiveTab] = useState('register');
 	const [isOver21, setIsOver21] = useState(false);
@@ -36,7 +36,9 @@ export default function ModalContent({ isOpen, onClose }) {
 				</div>
 
 				{activeTab === 'login' && (
-					<LoginForm />
+					<LoginForm
+						handleChangeToLogin={() => setActiveTab('register')}
+					/>
 				)}
 				{activeTab === 'register' && (
 					<RegisterForm

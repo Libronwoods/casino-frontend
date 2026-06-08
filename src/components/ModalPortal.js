@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ModalContent from './ModalContent.js';
 
-export default function ModalPortal({ isOpen, mode, onClose }) {
+export default function ModalPortal({ isOpen, onClose }) {
 	useEffect(() => {
 		if (!isOpen) return;
 		const onKey = (e) => {
 			if (e.key === 'Escape') onClose();
+			console.log(e);
 		};
 
 		document.addEventListener('keydown', onKey);
@@ -21,7 +22,7 @@ export default function ModalPortal({ isOpen, mode, onClose }) {
 	if (!isOpen) return null;
 
 	return createPortal(
-		<ModalContent mode={mode} onClose={onClose} />,
+		<ModalContent onClose={onClose} />,
 		document.body
 	);
 }
