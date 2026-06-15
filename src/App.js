@@ -10,7 +10,8 @@ function App() {
     <div className="wrapper">
       <Header />
       <main>
-        <Carousel />
+        <Carousel
+        />
         <TopMatches />
       </main>
       <Footer />

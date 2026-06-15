@@ -2,6 +2,7 @@ import centr from '../img/centr.jpg';
 import centr2 from '../img/centr2.jpg';
 import centr3 from '../img/centr3.jpg';
 import centr5 from '../img/centr5.jpg';
+import { useState } from 'react';
 
 // ВЁРСТКА БАННЕРА-КАРУСЕЛИ (без логики).
 // Что нужно сделать самому:
@@ -10,55 +11,48 @@ import centr5 from '../img/centr5.jpg';
 //   3. Показывать только активный слайд + подсвечивать активную точку .carousel__dot.
 // Сейчас все слайды лежат рядом в .carousel__track — это просто разметка.
 
+const slides = [
+	{ img: centr, tag: 'Бонус', title: 'Приветственный бонус до 100 BYN', text: '+ 300 фриспинов для новых клиентов', cta: 'Получить бонус' },
+	{ img: centr2, tag: 'Промо', title: 'Кэшбэк 10% каждую неделю', text: 'Возвращаем часть проигрыша по понедельникам', cta: 'Подробнее' },
+	{ img: centr3, tag: 'Спорт', title: 'Экспресс дня с бустом +15%', text: 'Увеличенный коэффициент на топовые события', cta: 'Сделать ставку' },
+	{ img: centr5, tag: 'Турнир', title: 'Призовой фонд 50 000 BYN', text: 'Играй в слоты и поднимайся в таблице лидеров', cta: 'Участвовать' },
+];
+
 export default function Carousel() {
+
+
+
+	const [Offset, SetOffset] = useState(0)
+
+	const slide = slides[Offset]
+	const HandleLeftArroyClick = () => {
+		SetOffset(Offset - 1)
+		if (Offset === 0)
+			return 0;
+	}
+
+	const HandleRightArroyClick = () => {
+		SetOffset(Offset + 1);
+
+	}
+
 	return (
 		<section className="carousel">
 			{/* Стрелка влево */}
-			<button type="button" className="carousel__arrow carousel__arrow--prev" aria-label="Назад">
+			<button type="button"
+				className="carousel__arrow carousel__arrow--prev"
+				onClick={HandleLeftArroyClick}
+				aria-label="Назад">
 				&#10094;
 			</button>
 
 			{/* Лента слайдов */}
-			<div className="carousel__track">
-				<div className="carousel__slide" style={{ backgroundImage: `url(${centr})` }}>
-					<div className="carousel__caption">
-						<span className="carousel__tag">Бонус</span>
-						<h2 className="carousel__title">Приветственный бонус до 100 BYN</h2>
-						<p className="carousel__text">+ 300 фриспинов для новых клиентов</p>
-						<button type="button" className="carousel__cta">Получить бонус</button>
-					</div>
-				</div>
 
-				<div className="carousel__slide" style={{ backgroundImage: `url(${centr2})` }}>
-					<div className="carousel__caption">
-						<span className="carousel__tag">Промо</span>
-						<h2 className="carousel__title">Кэшбэк 10% каждую неделю</h2>
-						<p className="carousel__text">Возвращаем часть проигрыша по понедельникам</p>
-						<button type="button" className="carousel__cta">Подробнее</button>
-					</div>
-				</div>
-
-				<div className="carousel__slide" style={{ backgroundImage: `url(${centr3})` }}>
-					<div className="carousel__caption">
-						<span className="carousel__tag">Спорт</span>
-						<h2 className="carousel__title">Экспресс дня с бустом +15%</h2>
-						<p className="carousel__text">Увеличенный коэффициент на топовые события</p>
-						<button type="button" className="carousel__cta">Сделать ставку</button>
-					</div>
-				</div>
-
-				<div className="carousel__slide" style={{ backgroundImage: `url(${centr5})` }}>
-					<div className="carousel__caption">
-						<span className="carousel__tag">Турнир</span>
-						<h2 className="carousel__title">Призовой фонд 50 000 BYN</h2>
-						<p className="carousel__text">Играй в слоты и поднимайся в таблице лидеров</p>
-						<button type="button" className="carousel__cta">Участвовать</button>
-					</div>
-				</div>
-			</div>
 
 			{/* Стрелка вправо */}
-			<button type="button" className="carousel__arrow carousel__arrow--next" aria-label="Вперёд">
+			<button type="button" className="carousel__arrow carousel__arrow--next"
+				onClick={HandleRightArroyClick}
+				aria-label="Вперёд">
 				&#10095;
 			</button>
 
@@ -69,6 +63,6 @@ export default function Carousel() {
 				<span className="carousel__dot"></span>
 				<span className="carousel__dot"></span>
 			</div>
-		</section>
+		</section >
 	);
 }
