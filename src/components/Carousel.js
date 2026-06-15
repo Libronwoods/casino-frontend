@@ -47,7 +47,18 @@ export default function Carousel() {
 			</button>
 
 			{/* Лента слайдов */}
-
+			<div className="carousel__track">
+				<div
+					className="carousel__slide"
+					style={{ backgroundImage: `url(${slide.img})` }}>
+					<div className="carousel__caption">
+						<span className="carousel__tag">Здесь тэг</span>
+						<h2 className="carousel__title">Здесь title</h2>
+						<p className="carousel__text">Здесь текст</p>
+						<button type="button" className="carousel__cta">Текст кнопкиы</button>
+					</div>
+				</div>
+			</div>
 
 			{/* Стрелка вправо */}
 			<button type="button" className="carousel__arrow carousel__arrow--next"
