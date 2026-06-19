@@ -38,7 +38,7 @@ export default function Header() {
 									Закрыть модальное окно по клику на крестик
 								</p>
 							</div>
-						</div> : null }
+						</div> : null}
 					</li>
 				</ul>
 			</div>

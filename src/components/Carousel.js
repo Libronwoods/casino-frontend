@@ -18,13 +18,15 @@ const slides = [
 	{ img: centr5, tag: 'Турнир', title: 'Призовой фонд 50 000 BYN', text: 'Играй в слоты и поднимайся в таблице лидеров', cta: 'Участвовать' },
 ];
 
-export default function Carousel() {
+export default function Carousel(img, tag, title, text, cta) {
 
 
 
 	const [Offset, SetOffset] = useState(0)
 
 	const slide = slides[Offset]
+
+
 	const HandleLeftArroyClick = () => {
 		SetOffset(Offset - 1)
 		if (Offset === 0)
@@ -33,7 +35,6 @@ export default function Carousel() {
 
 	const HandleRightArroyClick = () => {
 		SetOffset(Offset + 1);
-
 	}
 
 	return (
@@ -52,10 +53,10 @@ export default function Carousel() {
 					className="carousel__slide"
 					style={{ backgroundImage: `url(${slide.img})` }}>
 					<div className="carousel__caption">
-						<span className="carousel__tag">Здесь тэг</span>
-						<h2 className="carousel__title">Здесь title</h2>
-						<p className="carousel__text">Здесь текст</p>
-						<button type="button" className="carousel__cta">Текст кнопкиы</button>
+						<span className="carousel__tag">{slide.tag}</span>
+						<h2 className="carousel__title">{slide.title}</h2>
+						<p className="carousel__text">{slide.text}</p>
+						<button type="button" className="carousel__cta">{slide.cta}</button>
 					</div>
 				</div>
 			</div>
@@ -68,11 +69,15 @@ export default function Carousel() {
 			</button>
 
 			{/* Точки-индикаторы (по числу слайдов) */}
+
 			<div className="carousel__dots">
-				<span className="carousel__dot carousel__dot--active"></span>
-				<span className="carousel__dot"></span>
-				<span className="carousel__dot"></span>
-				<span className="carousel__dot"></span>
+				{slides.map(index =>
+					<span
+						key={index}
+						className={`"carousel__dot ${index === Offset ? "carousel__dot--active" : " "}`}>
+
+					</span>
+				)}
 			</div>
 		</section >
 	);
