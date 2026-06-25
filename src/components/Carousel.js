@@ -25,19 +25,27 @@ export default function Carousel(img, tag, title, text, cta) {
 	const [Offset, SetOffset] = useState(0)
 
 	const slide = slides[Offset]
+	
 
 
 	const HandleLeftArroyClick = () => {
-		SetOffset(Offset - 1)
-		if (Offset === 0)
-			return 0;
-	}
+  SetOffset(prev => (prev === 0 ? slides.length - 1 : prev - 1 ));
+ };
 
+
+
+ // const HandleRightArroyClick = () => {
+ // 		SetOffset(prev => (prev === slides.length - 1 ? 0 : prev + 1 ))
+	// }
 	const HandleRightArroyClick = () => {
-		SetOffset(Offset + 1);
-	}
+		SetOffset(prev => {
+		if (prev=== slides.length - 1) {
+			return 0;} else  {
+				return prev + 1;
+			}
+		})}
 
-	return (
+	 return (
 		<section className="carousel">
 			{/* Стрелка влево */}
 			<button type="button"
@@ -71,10 +79,10 @@ export default function Carousel(img, tag, title, text, cta) {
 			{/* Точки-индикаторы (по числу слайдов) */}
 
 			<div className="carousel__dots">
-				{slides.map(index =>
+				{slides.map((slideItem, index) =>
 					<span
 						key={index}
-						className={`"carousel__dot ${index === Offset ? "carousel__dot--active" : " "}`}>
+						className={`carousel__dot ${index === Offset ? "carousel__dot--active" : " "}`}>
 
 					</span>
 				)}
