@@ -18,7 +18,7 @@ const slides = [
 	{ id: 3, img: centr5, tag: 'Турнир', title: 'Призовой фонд 50 000 BYN', text: 'Играй в слоты и поднимайся в таблице лидеров', cta: 'Участвовать' },
 ];
 
-export default function Carousel(id, img, tag, title, text, cta) {
+export default function Carousel() {
 
 
 
@@ -43,9 +43,9 @@ export default function Carousel(id, img, tag, title, text, cta) {
 		})
 	}
 
-	// const handleDotClick = () => {
-	// 	setOffset(id);
-	// };
+	const HandleDotClick = (id) => {
+		setOffset(id);
+	};
 
 	return (
 		<section className="carousel">
@@ -83,7 +83,7 @@ export default function Carousel(id, img, tag, title, text, cta) {
 			<div className="carousel__dots">
 				{slides.map((slideItem, id) =>
 					<span
-						onClick={() => console.log('клик')}
+						onClick={() => HandleDotClick(id)}
 						key={id}
 						className={`carousel__dot ${id === offset ? "carousel__dot--active" : " "}`}>
 					</span>
