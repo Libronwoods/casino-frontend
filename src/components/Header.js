@@ -1,15 +1,11 @@
+
 import { useState } from 'react';
+import ModalPortal from './ModalPortal';
+
 
 export default function Header() {
-	const [modalOpen, setModalOpen] = useState(false);
 
-	const handleOpenModal = () => {
-		setModalOpen(true);
-	};
-
-	const handleCloseModal = () => {
-		setModalOpen(false);
-	};
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<header>
@@ -20,8 +16,11 @@ export default function Header() {
 					<li>Лайф</li>
 					<li>Казино</li>
 					<li>Live-казино</li>
-					<li>Язык</li>
-					<li>Войти</li>
+					<select className="language-select">
+						<option value="RU">RU</option>
+						<option value="EN">EN</option>
+					</select>
+					<li className="login">Войти</li>
 					<li className="login">
 						<button className="register-btn" onClick={handleOpenModal}>Регистрация</button>
 						{modalOpen ? <div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
@@ -41,6 +40,7 @@ export default function Header() {
 						</div> : null}
 					</li>
 				</ul>
+				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 			</div>
 		</header>
 	);
