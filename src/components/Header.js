@@ -22,14 +22,26 @@ export default function Header() {
 					</select>
 					<li className="login">Войти</li>
 					<li className="login">
-						<button className="register-btn" onClick={() => setIsOpen(true)}>
-							Регистрация
-						</button>
+						<button className="register-btn" onClick={handleOpenModal}>Регистрация</button>
+						{modalOpen ? <div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
+							<div className="popup__content">
+								<button
+									type="button"
+									className="popup__close"
+									onClick={handleCloseModal}
+								>
+									<span></span>
+								</button>
+								<h2 className="popup__title">Simple Modal</h2>
+								<p className="popup__text">
+									Закрыть модальное окно по клику на крестик
+								</p>
+							</div>
+						</div> : null}
 					</li>
 				</ul>
 				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 			</div>
-			<div className="presentation"></div>
 		</header>
 	);
 }
