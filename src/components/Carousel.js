@@ -26,12 +26,9 @@ export default function Carousel() {
 
 	const slide = slides[offset]
 
-
-
 	const HandleLeftArroyClick = () => {
 		setOffset(prev => (prev === 0 ? slides.length - 1 : prev - 1));
 	};
-
 
 	const HandleRightArroyClick = () => {
 		setOffset(prev => {
