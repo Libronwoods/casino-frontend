@@ -42,7 +42,7 @@ ul.nav li {
 	transition: opacity 500ms ease;
 }
 
-li.login {
+.login {
 	color: #e9e9e5;
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
@@ -593,34 +593,54 @@ footer {
 .match-card__odds {
 	background: transparent;
 	display: flex;
-	gap: 8px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+.match-card:hover {
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	background-color: #1e1e1e;
+}
+
+/* Стиль для каждого варианта ставки */
 .odd {
-	background: #2a2c2c;
+	background: linear-gradient(135deg, #3a3a3a, #2a2c2c);
 	flex: 1;
-	border-radius: 8px;
-	padding: 8px 4px;
+	margin: 0 8px;
+	border-radius: 12px;
+	padding: 14px 12px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 4px;
-	transition: background-color 0.25s;
+	gap: 6px;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-.match-card:hover .odd {
-	background: #34201f;
+.odd:hover {
+	background: linear-gradient(135deg, #4a4a4a, #3a3c3c);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Метка ставки */
 .odd__label {
 	background: transparent;
-	font-size: 11px;
-	color: #9a9a96;
+	font-size: 16px;
+	color: #b0b0b0;
+	font-weight: 500;
+	letter-spacing: 0.5px;
 }
 
+/* Значение ставки */
 .odd__value {
 	background: transparent;
-	font-size: 15px;
-	font-weight: 600;
-	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	color: #ffffff;
+	letter-spacing: 0.5px;
 }

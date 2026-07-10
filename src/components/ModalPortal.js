@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ModalContent from './ModalContent.js';
 
-export default function ModalPortal({ isOpen, onClose }) {
+export default function ModalPortal({ children, isOpen, onClose }) {
 	useEffect(() => {
 		if (!isOpen) return;
 		const onKey = (e) => {
@@ -22,7 +22,9 @@ export default function ModalPortal({ isOpen, onClose }) {
 	if (!isOpen) return null;
 
 	return createPortal(
-		<ModalContent onClose={onClose} />,
+		<ModalContent onClose={onClose}>
+			{children}
+		</ModalContent>,
 		document.body
 	);
 }
