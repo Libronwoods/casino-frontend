@@ -3,13 +3,10 @@ import centr2 from '../img/centr2.jpg';
 import centr3 from '../img/centr3.jpg';
 import centr5 from '../img/centr5.jpg';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import ModalPortal from './ModalPortal';
 
-// ВЁРСТКА БАННЕРА-КАРУСЕЛИ (без логики).
-// Что нужно сделать самому:
-//   1. Автопрокрутку слайдов (например, через useState + useEffect/setInterval).
-//   2. Обработчики на стрелки .carousel__arrow (листать вперёд/назад).
-//   3. Показывать только активный слайд + подсвечивать активную точку .carousel__dot.
-// Сейчас все слайды лежат рядом в .carousel__track — это просто разметка.
+
 
 const slides = [
 	{ id: 0, img: centr, tag: 'Бонус', title: 'Приветственный бонус до 100 BYN', text: '+ 300 фриспинов для новых клиентов', cta: 'Получить бонус' },
@@ -20,11 +17,17 @@ const slides = [
 
 export default function Carousel() {
 
-
-
+	const [isOpen, setIsOpen] = useState(false);
 	const [offset, setOffset] = useState(0)
-
 	const slide = slides[offset]
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setOffset(prev => (prev === slides.length - 1 ? 0 : prev + 1))
+		}, 7000)
+		return () => (clearInterval(interval))
+	}, [])
+
 
 	const HandleLeftArroyClick = () => {
 		setOffset(prev => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -63,7 +66,7 @@ export default function Carousel() {
 						<span className="carousel__tag">{slide.tag}</span>
 						<h2 className="carousel__title">{slide.title}</h2>
 						<p className="carousel__text">{slide.text}</p>
-						<button type="button" className="carousel__cta">{slide.cta}</button>
+						<button onClick={() => setIsOpen(true)} type="button" className="carousel__cta">{slide.cta}</button>
 					</div>
 				</div>
 			</div>
@@ -86,6 +89,12 @@ export default function Carousel() {
 					</span>
 				)}
 			</div>
+			<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+				<div>
+					{slide.title}
+					<h3>{slide.text}</h3>
+				</div>
+			</ModalPortal>
 		</section >
 	);
 }

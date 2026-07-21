@@ -1,11 +1,21 @@
 
 import { useState } from 'react';
 import ModalPortal from './ModalPortal';
-
+import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 
 export default function Header() {
 
 	const [isOpen, setIsOpen] = useState(false);
+	const [activeTab, setActiveTab] = useState('register');
+	const [isOver21, setIsOver21] = useState(false);
+
+	const handleCloseModal = () => {
+		setIsOpen(false)
+	}
+	const handleOpenModal = () => {
+		setIsOpen(true)
+	}
 
 	return (
 		<header>
@@ -20,10 +30,10 @@ export default function Header() {
 						<option value="RU">RU</option>
 						<option value="EN">EN</option>
 					</select>
-					<li className="login">Войти</li>
+					<button className="login" onClick={handleOpenModal}>Войти</button>
 					<li className="login">
 						<button className="register-btn" onClick={handleOpenModal}>Регистрация</button>
-						{modalOpen ? <div className={`popup ${modalOpen ? 'open' : ''}`} id="popup">
+						{isOpen ? <div className={`popup ${isOpen ? 'open' : ''}`} id="popup">
 							<div className="popup__content">
 								<button
 									type="button"
@@ -40,8 +50,34 @@ export default function Header() {
 						</div> : null}
 					</li>
 				</ul>
-				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+				<ModalPortal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+					<div className="modal-tabs">
+						<button type="button"
+							className={`modal-tab ${activeTab === 'login' ? 'active' : ''}`}
+							onClick={() => setActiveTab('login')}
+						>
+							Вход
+						</button>
+						<button type="button"
+							className={`modal-tab ${activeTab === 'register' ? 'active' : ''}`}
+							onClick={() => setActiveTab('register')}>
+							Регистрация
+						</button>
+
+					</div>
+
+					{activeTab === 'login' && (
+						<LoginForm
+							handleChangeToLogin={() => setActiveTab('register')}
+						/>
+					)}
+					{activeTab === 'register' && (
+						<RegisterForm
+							isOver21={isOver21}
+							setIsOver21={setIsOver21} />
+					)}
+				</ModalPortal>
 			</div>
-		</header>
+		</header >
 	);
 }

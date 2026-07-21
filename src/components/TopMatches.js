@@ -11,7 +11,7 @@
 //      (тогда дубликат набора можно просто отрендерить вторым проходом).
 //   2. Сделать клик по карточке -> переход на страницу матча (react роутер).
 //      Сейчас карточка обёрнута в <a href="#"> — это заглушка-ссылка.
-
+// 2.
 
 
 const slides = [
@@ -68,9 +68,11 @@ export default function TopMatches() {
 							<div className="match-card__odds">
 								{slide.odds.map((odds, indexOdd) => (
 									<div>
-										<span key={odds.id} className="odd"><span className="odd__label">П1</span><span className="odd__value">2.10</span></span>
-										<span className="odd"><span className="odd__label">X</span><span className="odd__value">3.40</span></span>
-										<span className="odd"><span className="odd__label">П2</span><span className="odd__value">3.05</span></span>
+										<span key={odds.id} className="odd">
+											<span className="odd__label">{odds.label}</span>
+											<span className="odd__value">{odds.value}</span>
+										</span>
+
 									</div>
 								))}
 							</div>
@@ -78,125 +80,37 @@ export default function TopMatches() {
 					))}
 
 					{/* ===== НАБОР 2 — дубликат для бесшовной прокрутки (aria-hidden, чтобы скринридер не читал дважды) ===== */}
-					<a href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
-						<div className="match-card__top">
-							<span className="match-card__league">⚽ Лига чемпионов</span>
-							<span className="match-card__time">Сегодня 21:45</span>
-						</div>
-						<div className="match-card__teams">
-							<div className="team">
-								<span className="team__logo1">RM</span>
-								<span className="team__name1">Реал Мадрид</span>
+					{slides.map((slide, index) => (
+						<a key={slide.id} href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
+							<div className="match-card__top">
+								<span className="match-card__league">{slide.league}</span>
+								<span className="match-card__time">{slide.time}</span>
 							</div>
-							<span className="match-card__vs">VS</span>
-							<div className="team">
-								<span className="team__logo2">MC</span>
-								<span className="team__name2">Манчестер Сити</span>
+							<div className="match-card__teams">
+								<div className="team">
+									<span className="team__logo1">{slide.logo1}</span>
+									<span className="team__name1">{slide.name1}</span>
+								</div>
+								<span className="match-card__vs">VS</span>
+								<div className="team">
+									<span className="team__logo2">{slide.logo2}</span>
+									<span className="team__name2">{slide.name2}</span>
+								</div>
 							</div>
-						</div>
-						<div className="match-card__odds">
-							<span className="odd"><span className="odd__label">П1</span><span className="odd__value">2.10</span></span>
-							<span className="odd"><span className="odd__label">X</span><span className="odd__value">3.40</span></span>
-							<span className="odd"><span className="odd__label">П2</span><span className="odd__value">3.05</span></span>
-						</div>
-					</a>
-
-					<a href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
-						<div className="match-card__top">
-							<span className="match-card__league">⚽ АПЛ</span>
-							<span className="match-card__time">Сегодня 22:00</span>
-						</div>
-						<div className="match-card__teams">
-							<div className="team">
-								<span className="team__logo1">LIV</span>
-								<span className="team__name1">Ливерпуль</span>
+							<div className="match-card__odds">
+								{slide.odds.map((odds, indexOdd) => (
+									<div>
+										<span key={odds.id} className="odd">
+											<span className="odd__label">{odds.label}</span>
+											<span className="odd__value">{odds.value}</span>
+										</span>
+									</div>
+								))}
 							</div>
-							<span className="match-card__vs">VS</span>
-							<div className="team">
-								<span className="team__logo2">ARS</span>
-								<span className="team__name2">Арсенал</span>
-							</div>
-						</div>
-						<div className="match-card__odds">
-							<span className="odd"><span className="odd__label">П1</span><span className="odd__value">1.95</span></span>
-							<span className="odd"><span className="odd__label">X</span><span className="odd__value">3.60</span></span>
-							<span className="odd"><span className="odd__label">П2</span><span className="odd__value">3.80</span></span>
-						</div>
-					</a>
-
-					<a href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
-						<div className="match-card__top">
-							<span className="match-card__league">🏀 НБА</span>
-							<span className="match-card__time">Завтра 03:30</span>
-						</div>
-						<div className="match-card__teams">
-							<div className="team">
-								<span className="team__logo1">LAL</span>
-								<span className="team__name1">Лейкерс</span>
-							</div>
-							<span className="match-card__vs">VS</span>
-							<div className="team">
-								<span className="team__logo2">BOS</span>
-								<span className="team__name2">Селтикс</span>
-							</div>
-						</div>
-						<div className="match-card__odds">
-							<span className="odd"><span className="odd__label">П1</span><span className="odd__value">1.80</span></span>
-							<span className="odd"><span className="odd__label">X</span><span className="odd__value">15.0</span></span>
-							<span className="odd"><span className="odd__label">П2</span><span className="odd__value">2.05</span></span>
-						</div>
-					</a>
-
-					<a href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
-						<div className="match-card__top">
-							<span className="match-card__league">🎾 Ролан Гаррос</span>
-							<span className="match-card__time">Сегодня 18:00</span>
-						</div>
-						<div className="match-card__teams">
-							<div className="team">
-								<span className="team__logo1">DJ</span>
-								<span className="team__name1">Джокович</span>
-							</div>
-							<span className="match-card__vs">VS</span>
-							<div className="team">
-								<span className="team__logo2">AL</span>
-								<span className="team__name2">Алькарас</span>
-							</div>
-						</div>
-						<div className="match-card__odds">
-							<span className="odd"><span className="odd__label">П1</span><span className="odd__value">2.45</span></span>
-							<span className="odd"><span className="odd__label">X</span><span className="odd__value">—</span></span>
-							<span className="odd"><span className="odd__label">П2</span><span className="odd__value">1.55</span></span>
-						</div>
-					</a>
-
-					<a href="#" className="match-card" aria-hidden="true" tabIndex={-1}>
-						<div className="match-card__top">
-							<span className="match-card__league">🏒 КХЛ</span>
-							<span className="match-card__time">Сегодня 19:30</span>
-						</div>
-						<div className="match-card__teams">
-							<div className="team">
-								<span className="team__logo1">CSKA</span>
-								<span className="team__name1">ЦСКА</span>
-							</div>
-							<span className="match-card__vs">VS</span>
-							<div className="team">
-								<span className="team__logo2">SKA</span>
-								<span className="team__name2">СКА</span>
-							</div>
-						</div>
-						<div className="match-card__odds">
-							<span className="odd"><span className="odd__label">П1</span><span className="odd__value">2.20</span></span>
-							<span className="odd"><span className="odd__label">X</span><span className="odd__value">4.10</span></span>
-							<span className="odd"><span className="odd__label">П2</span><span className="odd__value">2.90</span></span>
-						</div>
-					</a>
-
+						</a>
+					))}
 				</div>
-
 			</div>
-
-		</section>
+		</section >
 	);
 }
